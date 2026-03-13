@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ScrollReveal";
+import IndustryNews from "@/components/IndustryNews";
 
 export const metadata: Metadata = { title: "Insights" };
 
@@ -115,6 +116,8 @@ export default function InsightsPage() {
           </div>
         </div>
       </section>
+
+      <IndustryNews />
     </>
   );
 }
