@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = { title: "Insights" };
 
@@ -80,29 +81,36 @@ export default function InsightsPage() {
       />
       <section className="py-20 sm:py-28">
         <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="space-y-20">
-            {articles.map((a) => (
-              <article key={a.slug} id={a.slug} className="scroll-mt-24">
-                <div className="flex items-center gap-3 text-sm text-[var(--slate)] mb-4">
-                  <span>{a.date}</span>
-                  <span>&middot;</span>
-                  <span>{a.read}</span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-                  {a.title}
-                </h2>
-                <p className="text-[var(--gold-dark)] font-medium text-sm mb-6">
-                  {a.summary}
-                </p>
-                <div className="space-y-4">
-                  {a.body.map((p, i) => (
-                    <p key={i} className="text-[var(--slate)] leading-relaxed">
-                      {p}
-                    </p>
-                  ))}
-                </div>
-                <div className="divider-gold mt-12" />
-              </article>
+          <div className="space-y-0">
+            {articles.map((a, idx) => (
+              <ScrollReveal key={a.slug} delay={idx * 80}>
+                <article
+                  id={a.slug}
+                  className="scroll-mt-28 py-16 first:pt-0 border-b border-[var(--border)] last:border-b-0"
+                >
+                  <div className="flex items-center gap-3 text-sm text-[var(--text-muted)] mb-5">
+                    <span>{a.date}</span>
+                    <span className="w-1 h-1 rounded-full bg-[var(--text-muted)]" />
+                    <span>{a.read}</span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-5">
+                    {a.title}
+                  </h2>
+                  <p className="text-[var(--accent)] font-medium text-sm mb-8 max-w-3xl leading-relaxed">
+                    {a.summary}
+                  </p>
+                  <div className="space-y-5">
+                    {a.body.map((p, i) => (
+                      <p
+                        key={i}
+                        className="text-[var(--text-muted)] leading-relaxed text-[16px]"
+                      >
+                        {p}
+                      </p>
+                    ))}
+                  </div>
+                </article>
+              </ScrollReveal>
             ))}
           </div>
         </div>

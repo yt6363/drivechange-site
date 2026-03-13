@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = { title: "AI Governance" };
 
@@ -54,53 +55,116 @@ export default function AIGovernancePage() {
         subtitle="Governance is not a constraint on AI innovation. It is the foundation for trust, scale, and sustainability."
       />
 
-      <section className="py-20 sm:py-28 bg-[var(--warm-white)]">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
-          <p className="text-xs font-semibold text-[var(--gold-dark)] uppercase tracking-[0.2em] mb-4">
-            Framework
-          </p>
-          <h2 className="text-3xl font-bold mb-6">Four Pillars of AI Governance</h2>
-          <div className="divider-gold mb-12" />
+      {/* Pillars — no cards, typographic layout */}
+      <section className="py-20 sm:py-28 bg-[var(--bg-alt)]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <ScrollReveal>
+            <p className="text-sm font-medium text-[var(--accent)] tracking-[0.2em] uppercase mb-3">
+              Framework
+            </p>
+            <h2 className="mb-16">
+              <span className="block text-xl sm:text-2xl font-serif italic text-[var(--text-muted)]">
+                Four Pillars of
+              </span>
+              <span
+                className="block text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.92]"
+                style={{ fontFamily: "var(--font-bebas)" }}
+              >
+                AI Governance
+              </span>
+            </h2>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-16">
             {pillars.map((p, i) => (
-              <div key={p.label} className="bg-white border border-[var(--border)] rounded-sm p-6">
-                <span className="text-xs text-[var(--gold-dark)] font-semibold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-lg font-semibold mt-2 mb-3">{p.label}</h3>
-                <p className="text-[var(--slate)] text-sm leading-relaxed">{p.text}</p>
-              </div>
+              <ScrollReveal key={p.label} delay={i * 100}>
+                <div className="relative">
+                  <span
+                    className="text-[7rem] sm:text-[8rem] leading-none tracking-tighter absolute -top-4 -left-1 select-none"
+                    style={{
+                      fontFamily: "var(--font-bebas)",
+                      color: "rgba(7,183,237,0.09)",
+                    }}
+                    aria-hidden="true"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="relative pt-14">
+                    <h3 className="mb-3">
+                      <span
+                        className="text-2xl sm:text-3xl uppercase tracking-tight"
+                        style={{ fontFamily: "var(--font-bebas)" }}
+                      >
+                        {p.label}
+                      </span>
+                    </h3>
+                    <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-md">
+                      {p.text}
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Topics */}
       <section className="py-20 sm:py-28">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
-          <p className="text-xs font-semibold text-[var(--gold-dark)] uppercase tracking-[0.2em] mb-4">
-            Key Areas
-          </p>
-          <h2 className="text-3xl font-bold mb-6">Governance Topics</h2>
-          <div className="divider-gold mb-12" />
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <ScrollReveal>
+            <p className="text-sm font-medium text-[var(--accent)] tracking-[0.2em] uppercase mb-3">
+              Key Areas
+            </p>
+            <h2 className="mb-14">
+              <span className="block text-xl sm:text-2xl font-serif italic text-[var(--text-muted)]">
+                Governance
+              </span>
+              <span
+                className="block text-4xl sm:text-5xl tracking-tight leading-[0.92]"
+                style={{ fontFamily: "var(--font-bebas)" }}
+              >
+                Topics
+              </span>
+            </h2>
+          </ScrollReveal>
 
-          <div className="space-y-12">
-            {topics.map((t) => (
-              <div key={t.title} className="border-l-2 border-[var(--gold)] pl-8">
-                <h3 className="text-xl font-semibold mb-3">{t.title}</h3>
-                <p className="text-[var(--slate)] leading-relaxed max-w-3xl">{t.text}</p>
-              </div>
+          <div className="space-y-10">
+            {topics.map((t, i) => (
+              <ScrollReveal key={t.title} delay={i * 80}>
+                <div className="border-l-2 border-[var(--accent)] pl-8 hover:pl-10 transition-all duration-300">
+                  <h3 className="text-xl font-semibold mb-3">{t.title}</h3>
+                  <p className="text-[var(--text-muted)] leading-relaxed max-w-3xl">
+                    {t.text}
+                  </p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="mt-20 text-center">
-            <Link
-              href="/contact"
-              className="bg-[var(--navy)] hover:bg-[var(--navy-light)] text-white px-8 py-3 rounded-sm font-semibold text-sm tracking-wide transition-colors inline-block"
-            >
-              Discuss Governance Frameworks
-            </Link>
-          </div>
+          <ScrollReveal>
+            <div className="mt-20 text-center">
+              <Link
+                href="/contact"
+                className="btn-primary inline-flex items-center gap-2 bg-[var(--accent)] text-white px-7 py-3.5 rounded-full font-medium text-sm tracking-wide hover:bg-[var(--accent-hover)] transition-colors"
+              >
+                Discuss Governance Frameworks
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>

@@ -6,17 +6,24 @@ export default function PageHero({
   subtitle?: string;
 }) {
   return (
-    <section className="bg-[var(--navy)] text-white py-20 sm:py-28">
-      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="divider-gold mb-8" />
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+    <section className="pt-32 pb-16 sm:pt-40 sm:pb-24">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <p
+          className="text-sm font-medium text-[var(--accent)] tracking-[0.2em] uppercase mb-6"
+          style={{ animation: "slideUp 0.6s 0.1s cubic-bezier(0.16,1,0.3,1) both" }}
+        >
           {title}
+        </p>
+        <h1
+          className="text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight max-w-4xl"
+          style={{ animation: "slideUp 0.8s 0.25s cubic-bezier(0.16,1,0.3,1) both" }}
+        >
+          {subtitle || title}
         </h1>
-        {subtitle && (
-          <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-3xl leading-relaxed">
-            {subtitle}
-          </p>
-        )}
+        <div
+          className="divider-accent mt-8"
+          style={{ animation: "slideUp 0.6s 0.45s cubic-bezier(0.16,1,0.3,1) both" }}
+        />
       </div>
     </section>
   );

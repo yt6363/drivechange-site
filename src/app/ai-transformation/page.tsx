@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = { title: "AI Transformation" };
 
@@ -36,54 +37,89 @@ export default function AITransformationPage() {
       />
 
       <section className="py-20 sm:py-28">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="max-w-3xl mb-16">
-            <p className="text-lg text-[var(--slate)] leading-relaxed">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <ScrollReveal>
+            <p className="text-lg text-[var(--text-muted)] leading-relaxed max-w-3xl mb-20">
               Artificial intelligence fundamentally changes how organizations
               make decisions, allocate resources, and create value. It reshapes
               roles, expertise, and power structures. Leaders who treat AI as
               merely a technology initiative risk missing the deeper
               transformation it demands.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="space-y-16">
+          <div className="space-y-0 divide-y divide-[var(--border)]">
             {sections.map((s, i) => (
-              <div key={s.title} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <div className="lg:col-span-4">
-                  <span className="text-xs text-[var(--gold-dark)] font-semibold tracking-wider">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-2xl font-bold mt-2">{s.title}</h3>
+              <ScrollReveal key={s.title} delay={i * 80}>
+                <div className="py-12 first:pt-0 last:pb-0 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
+                  <div className="lg:col-span-4">
+                    <span
+                      className="text-4xl leading-none tracking-tight text-[var(--accent)]/15"
+                      style={{ fontFamily: "var(--font-bebas)" }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-2">
+                      <span
+                        className="text-2xl sm:text-3xl uppercase tracking-tight"
+                        style={{ fontFamily: "var(--font-bebas)" }}
+                      >
+                        {s.title}
+                      </span>
+                    </h3>
+                  </div>
+                  <div className="lg:col-span-8">
+                    <p className="text-[var(--text-muted)] leading-relaxed text-lg">
+                      {s.text}
+                    </p>
+                  </div>
                 </div>
-                <div className="lg:col-span-8">
-                  <p className="text-[var(--slate)] leading-relaxed">
-                    {s.text}
-                  </p>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="mt-20 pt-12 border-t border-[var(--border)]">
-            <div className="bg-[var(--navy)] text-white rounded-sm p-10 sm:p-14">
-              <div className="divider-gold mb-6" style={{ background: "var(--gold)" }} />
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Ready to define your AI transformation strategy?
-              </h3>
-              <p className="text-white/70 mb-8 max-w-2xl">
-                We help organizations move from AI experimentation to
-                enterprise-wide transformation with clear strategy, governance,
-                and change management.
-              </p>
-              <Link
-                href="/contact"
-                className="bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--navy)] px-8 py-3 rounded-sm font-semibold text-sm tracking-wide transition-colors inline-block"
-              >
-                Start the Conversation
-              </Link>
+          <ScrollReveal>
+            <div className="mt-24 blue-gradient text-white rounded-2xl p-10 sm:p-14 relative overflow-hidden">
+              <div className="relative z-10">
+                <div className="divider-accent mb-6" />
+                <h3 className="mb-4">
+                  <span className="block text-xl sm:text-2xl font-serif italic text-white/50">
+                    Ready to define your
+                  </span>
+                  <span
+                    className="block text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight"
+                    style={{ fontFamily: "var(--font-bebas)" }}
+                  >
+                    AI Transformation Strategy?
+                  </span>
+                </h3>
+                <p className="text-white/45 mb-8 max-w-2xl text-lg">
+                  We help organizations move from AI experimentation to
+                  enterprise-wide transformation with clear strategy,
+                  governance, and change management.
+                </p>
+                <Link
+                  href="/contact"
+                  className="btn-primary inline-flex items-center gap-2 bg-[var(--accent)] text-white px-7 py-3.5 rounded-full font-medium text-sm tracking-wide hover:bg-[var(--accent-hover)] transition-colors"
+                >
+                  Start the Conversation
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </Link>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </>

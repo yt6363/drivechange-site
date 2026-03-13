@@ -1,64 +1,181 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1c2536;
-  --navy: #0f1724;
-  --navy-light: #1c2a3f;
-  --navy-dark: #0a0f18;
-  --gold: #c9a84c;
-  --gold-light: #d4b96a;
-  --gold-dark: #a88b3d;
-  --warm-white: #faf8f5;
-  --charcoal: #3d4455;
-  --slate: #6b7280;
-  --border: #e2e4e8;
-  --muted-bg: #f5f5f3;
+  --bg: #FFFFFF;
+  --bg-alt: #F0F4FF;
+  --bg-blue: #0731ED;
+  --text: #1E293B;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --text-on-blue: #FFFFFF;
+  --text-on-blue-muted: rgba(255, 255, 255, 0.65);
+  --accent: #0731ED;
+  --accent-light: #E8ECFE;
+  --accent-hover: #2B50F0;
+  --accent-glow: rgba(7, 49, 237, 0.12);
+  --border: #E2E8F0;
+  --card: #FFFFFF;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-navy: var(--navy);
-  --color-navy-light: var(--navy-light);
-  --color-gold: var(--gold);
-  --color-gold-light: var(--gold-light);
-  --color-warm-white: var(--warm-white);
-  --color-charcoal: var(--charcoal);
-  --color-slate: var(--slate);
-  --color-muted-bg: var(--muted-bg);
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-dm-sans);
+}
+
+/* ─── Base ─── */
+::selection {
+  background: var(--accent);
+  color: white;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
 }
 
 h1, h2, h3 {
-  font-family: var(--font-serif), Georgia, serif;
-  color: var(--navy);
+  font-family: var(--font-display), Georgia, serif;
+  color: var(--text);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
 }
 
 h4, h5, h6 {
-  color: var(--navy);
+  color: var(--text);
 }
 
-/* McKinsey-style gold divider */
-.divider-gold {
-  width: 4rem;
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+/* ─── Accent Divider ─── */
+.divider-accent {
+  width: 3rem;
   height: 2px;
-  background: var(--gold);
+  background: var(--accent);
 }
 
-/* Fade animations */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ─── Scroll Reveal ─── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.animate-fade-up {
-  animation: fade-up 0.8s ease-out forwards;
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Hero Text Animation ─── */
+@keyframes heroWordUp {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-word {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.hero-word > span {
+  display: inline-block;
+  animation: heroWordUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* ─── Slide Up (utility) ─── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Interactive Card ─── */
+.interactive-card {
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(7, 49, 237, 0.10);
+  border-color: var(--accent);
+}
+
+/* ─── Animated Link Underline ─── */
+.link-animated {
+  position: relative;
+  display: inline-block;
+}
+
+.link-animated::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-animated:hover::after {
+  width: 100%;
+}
+
+/* ─── Logo Marquee ─── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 35s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Blue section gradient ─── */
+.blue-gradient {
+  background:
+    radial-gradient(ellipse at 15% 45%, rgba(255, 255, 255, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 25%, rgba(255, 255, 255, 0.06) 0%, transparent 55%),
+    var(--bg-blue);
+}
+
+/* ─── Button sweep ─── */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(100%);
+}
+
+/* ─── Stat numbers ─── */
+.stat-number {
+  font-family: var(--font-display), Georgia, serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
 }
