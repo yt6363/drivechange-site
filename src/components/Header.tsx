@@ -1,163 +1,75 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 
 const navigation = [
-  { name: "Home", href: "/" },
-  {
-    name: "About",
-    href: "/about",
-    children: [
-      { name: "Overview", href: "/about" },
-      { name: "Why Drive Change?", href: "/about/why" },
-      { name: "Core Values", href: "/about/core-values" },
-      { name: "Giving Back", href: "/about/giving-back" },
-    ],
-  },
-  {
-    name: "Services",
-    href: "/services/strategy",
-    children: [
-      { name: "Strategy", href: "/services/strategy" },
-      { name: "Leadership", href: "/services/leadership" },
-      { name: "Change", href: "/services/change" },
-      { name: "Efficiency", href: "/services/efficiency" },
-    ],
-  },
-  {
-    name: "Workshops",
-    href: "/workshops/communication",
-    children: [
-      { name: "Communication", href: "/workshops/communication" },
-      { name: "Management", href: "/workshops/management" },
-    ],
-  },
-  { name: "Case Studies", href: "/case-studies" },
-  { name: "Blog", href: "/blog" },
-  { name: "Profile", href: "/profile" },
+  { name: "AI Transformation", href: "/ai-transformation" },
+  { name: "AI Governance", href: "/ai-governance" },
+  { name: "Organizational Change", href: "/organizational-change" },
+  { name: "Insights", href: "/insights" },
+  { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <header className="bg-[var(--primary)] text-white sticky top-0 z-50">
+    <header className="bg-[var(--navy)] text-white sticky top-0 z-50 border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/images/drive-change-logo.png"
-              alt="Drive Change"
-              width={40}
-              height={40}
-              className="brightness-0 invert"
-            />
-            <span className="text-xl font-bold tracking-tight">
-              Drive Change
-            </span>
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 bg-[var(--gold)] rounded-sm flex items-center justify-center">
+              <span className="text-[var(--navy)] font-bold text-sm">DC</span>
+            </div>
+            <div className="flex flex-col leading-none">
+              <span className="text-base font-semibold tracking-wide">
+                Drive Change
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-0.5">
             {navigation.map((item) => (
-              <div
+              <Link
                 key={item.name}
-                className="relative"
-                onMouseEnter={() =>
-                  item.children && setOpenDropdown(item.name)
-                }
-                onMouseLeave={() => setOpenDropdown(null)}
+                href={item.href}
+                className="px-3 py-2 text-[13px] font-medium text-white/80 hover:text-[var(--gold)] transition-colors tracking-wide uppercase"
               >
-                <Link
-                  href={item.href}
-                  className="px-3 py-2 text-sm font-medium hover:text-[var(--accent)] transition-colors"
-                >
-                  {item.name}
-                  {item.children && (
-                    <span className="ml-1 text-xs">&#9662;</span>
-                  )}
-                </Link>
-                {item.children && openDropdown === item.name && (
-                  <div className="absolute top-full left-0 bg-white text-[var(--foreground)] rounded-md shadow-lg py-2 min-w-48 border border-[var(--border)]">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.name}
-                        href={child.href}
-                        className="block px-4 py-2 text-sm hover:bg-[var(--muted-bg)] transition-colors"
-                      >
-                        {child.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+                {item.name}
+              </Link>
             ))}
           </nav>
 
-          {/* Mobile hamburger */}
           <button
             className="lg:hidden p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[var(--primary-light)] border-t border-white/10">
+        <div className="lg:hidden bg-[var(--navy-light)] border-t border-white/10">
           <div className="px-4 py-3 space-y-1">
             {navigation.map((item) => (
-              <div key={item.name}>
-                <Link
-                  href={item.href}
-                  className="block px-3 py-2 text-sm font-medium hover:text-[var(--accent)]"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.name}
-                </Link>
-                {item.children && (
-                  <div className="pl-6">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.name}
-                        href={child.href}
-                        className="block px-3 py-1.5 text-xs text-white/70 hover:text-white"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {child.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <Link
+                key={item.name}
+                href={item.href}
+                className="block px-3 py-2.5 text-sm font-medium text-white/80 hover:text-[var(--gold)] transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.name}
+              </Link>
             ))}
           </div>
         </div>

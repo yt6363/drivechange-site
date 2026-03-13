@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const inter = Inter({
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Drive Change | Management Consulting",
+    default: "Drive Change | AI Transformation Advisory",
     template: "%s | Drive Change",
   },
   description:
-    "Drive Change helps leaders drive organizational change from ideation through implementation using structured methods and frameworks.",
+    "AI Transformation Strategy, Governance, and Organizational Change for the Intelligent Enterprise. Drive Change helps leaders navigate AI transformation.",
 };
 
 export default function RootLayout({
@@ -25,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${playfair.variable} antialiased`}
+      >
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

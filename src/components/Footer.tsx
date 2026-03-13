@@ -2,47 +2,67 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--primary)] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-lg font-bold text-white mb-4">Drive Change</h3>
-            <p className="text-sm text-white/70 leading-relaxed">
-              Helping leaders drive change from ideation through implementation.
+    <footer className="bg-[var(--navy-dark)] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-7 h-7 bg-[var(--gold)] rounded-sm flex items-center justify-center">
+                <span className="text-[var(--navy)] font-bold text-xs">DC</span>
+              </div>
+              <span className="font-semibold tracking-wide">Drive Change</span>
+            </div>
+            <p className="text-sm text-white/50 leading-relaxed">
+              AI Transformation Strategy, Governance, and Organizational Change
+              for the Intelligent Enterprise.
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-3">Services</h4>
-            <ul className="space-y-2 text-sm text-white/70">
-              <li><Link href="/services/strategy" className="hover:text-white transition-colors">Strategy</Link></li>
-              <li><Link href="/services/leadership" className="hover:text-white transition-colors">Leadership</Link></li>
-              <li><Link href="/services/change" className="hover:text-white transition-colors">Change</Link></li>
-              <li><Link href="/services/efficiency" className="hover:text-white transition-colors">Efficiency</Link></li>
+            <h4 className="text-xs font-semibold text-[var(--gold)] uppercase tracking-wider mb-4">
+              Services
+            </h4>
+            <ul className="space-y-2.5 text-sm text-white/60">
+              <li><Link href="/ai-transformation" className="hover:text-[var(--gold)] transition-colors">AI Transformation</Link></li>
+              <li><Link href="/ai-governance" className="hover:text-[var(--gold)] transition-colors">AI Governance</Link></li>
+              <li><Link href="/organizational-change" className="hover:text-[var(--gold)] transition-colors">Organizational Change</Link></li>
+              <li><Link href="/insights" className="hover:text-[var(--gold)] transition-colors">Insights</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-3">Company</h4>
-            <ul className="space-y-2 text-sm text-white/70">
-              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/profile" className="hover:text-white transition-colors">Profile</Link></li>
-              <li><Link href="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
-              <li><Link href="/about/giving-back" className="hover:text-white transition-colors">Giving Back</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-white mb-3">Contact</h4>
-            <ul className="space-y-2 text-sm text-white/70">
-              <li>Shama Patel, Managing Director</li>
+            <h4 className="text-xs font-semibold text-[var(--gold)] uppercase tracking-wider mb-4">
+              Connect
+            </h4>
+            <ul className="space-y-2.5 text-sm text-white/60">
+              <li><Link href="/about" className="hover:text-[var(--gold)] transition-colors">About</Link></li>
+              <li><Link href="/contact" className="hover:text-[var(--gold)] transition-colors">Contact</Link></li>
               <li>
-                <a href="mailto:shama.patel@drivechange.biz" className="hover:text-white transition-colors">
+                <a
+                  href="https://www.linkedin.com/in/shamadriveschange/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[var(--gold)] transition-colors"
+                >
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-xs font-semibold text-[var(--gold)] uppercase tracking-wider mb-4">
+              Contact
+            </h4>
+            <ul className="space-y-2.5 text-sm text-white/60">
+              <li>Shama Patel</li>
+              <li>
+                <a href="mailto:shama.patel@drivechange.biz" className="hover:text-[var(--gold)] transition-colors">
                   shama.patel@drivechange.biz
                 </a>
               </li>
               <li>
-                <a href="tel:+18479150870" className="hover:text-white transition-colors">
+                <a href="tel:+18479150870" className="hover:text-[var(--gold)] transition-colors">
                   +1 (847) 915-0870
                 </a>
               </li>
@@ -50,9 +70,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-8 pt-8 text-center text-sm text-white/50">
+        <div className="border-t border-white/10 mt-12 pt-8 text-center text-xs text-white/30">
           <p>&copy; {new Date().getFullYear()} Drive Change LLP. All rights reserved.</p>
-          <p className="mt-1">Registered business entity in Illinois, USA</p>
         </div>
       </div>
     </footer>
